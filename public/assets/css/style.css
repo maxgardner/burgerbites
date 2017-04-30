@@ -1,0 +1,13 @@
+.burger-photo {
+  margin: 10px 0;
+  max-width: 100px;
+}
+
+.jumbotron {
+  overflow: auto;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}

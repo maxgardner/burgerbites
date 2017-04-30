@@ -9,10 +9,18 @@ let Burger = require("../models/burger.js");
 
 router.get("/", (req, res) => {
   Burger.all(function(data) {
-    let info = {
-      burgers: data
+    let burgers = {
+      hitlist: [],
+      devoured: []
     };
-    res.render("index", info);
+    for (i in data) {
+      if (data[i].devoured === 1) {
+        burgers.devoured.push(data[i]);
+      } else {
+        burgers.hitlist.push(data[i]);
+      }
+    }
+    res.render("index", burgers);
   });
 });
 
@@ -22,8 +30,8 @@ router.post("/", (req, res) => {
   });
 });
 
-router.put("/:id", function(req, res) {
-  Burger.update(req.params.id, function() {
+router.put("/", function(req, res) {
+  Burger.update(req.body.id, function() {
     res.redirect("/");
   });
 });

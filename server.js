@@ -5,7 +5,7 @@ let bodyParser = require("body-parser");
 let methodOverride = require("method-override");
 let port = process.env.PORT || 8080;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 // Serve static content for the app from the "public" directory in the application directory.
@@ -18,7 +18,6 @@ app.set("view engine", "handlebars");
 
 // Import routes
 let router = require("./controllers/burgers_controller.js");
-
 app.use("/", router);
 
 app.listen(port, function() {
